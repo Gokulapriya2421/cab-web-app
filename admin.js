@@ -54,7 +54,8 @@ function addingCar(){
         if (carNumber in carDetails) {
             document.getElementById('addedCarContent').innerHTML = 'car number already present' + '<br/>'
         }
-        var addCarCheck = true;
+        else{
+            var addCarCheck = true;
         if (!driverName == ''){
             var cars = Object.keys(carDetails)
             for (let i =0;i<cars.length;i++)
@@ -67,7 +68,8 @@ function addingCar(){
             }
             
         }
-        if (addCarCheck) {
+        if (addCarCheck) 
+        {
             var addedCar = new DetailsOfCab(carNumber,driverName,location,type,cost);
             carDetails[addedCar.carNumber]=addedCar;
             if(location in availabilityOfCar)
@@ -84,7 +86,9 @@ function addingCar(){
         }
         
     
-    }
+       }
+   }
+        
     
   
 }
