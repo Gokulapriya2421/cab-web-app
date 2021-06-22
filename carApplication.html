@@ -1,5 +1,10 @@
-<html>
+<html style="background-color: rgb(231, 239, 248);">
+    <head>
+        <meta name="viewport" content="width=device-width" />
+    </head>
+   
     <style>
+     
         .button {
   background-color: #4CAF50;
   border: none;
@@ -8,46 +13,46 @@
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 1.3vw;
   margin: 4px 2px;
   cursor: pointer;
+  
 }
 .buttonAdmin {
   background-color: #6070b8;
-  border: none;
   color: white;
   padding: 6px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
+  text-align: left;
+  font-size: 1.2vw;
   margin: 4px 2px;
-  cursor: pointer;
+  border: none;
+  width: 200px;
+  vertical-align: left;
 }
 .buttonCustomer {
   background-color: #655180;
   border: none;
   color: white;
   padding: 6px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
+  text-align: left;
+  font-size: 1.2vw;
   margin: 4px 2px;
-  cursor: pointer;
+  width: 200px;
+  
 }
 .buttonSubmit {
   background-color: #fc7070;
   border: none;
   color: white;
   padding: 6px 32px;
-  text-align: center;
+  text-align: left;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 1.2vw;
   margin: 4px 2px;
   cursor: pointer;
 }
+
         .center {
           margin: auto;
           width: 60%;
@@ -55,185 +60,215 @@
           border: 3px solid #73AD21;
           padding: 10px;
         }
-        .centerLeft {
-          margin: 0;
-          position: absolute;
-          top: 15%;
-          left: 40%;
-          -ms-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-         }
-         
-         .centerRight {
-          margin: 0;
-          position: absolute;
-          top: 15%;
-          right: 40%;
-          -ms-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-         }
+           
          .background-img{
-             width: 700;
-        position:fixed;
-        right:20px;
-        bottom: 50px 
+           
+         position:absolute;
+         right:10px;
+         bottom: 10px 
         }
         .txtbox {
     font-size: 12pt;
     height: 27px;
     width : 300px;
 }
+.wrapper {
+  display: flex;
+  justify-content: center;
+}
+
     </style>
-    <h1 class="center">CAB APPLICATION</h1>
-    <img src="D:\javaScript\cars.jpeg" class="background-img">
-    <body>
+    <h1 class="center" >CAB APPLICATION</h1>
+    <img src="C:\Users\Admin\Downloads\car.png" class="background-img">
+    
+    <body >
         <script type="text/javascript" src="admin.js" ></script>
         <script type="text/javascript" src="customer.js" ></script>
-        <script type="text/javascript" src="choice.js" ></script>
+        <script type="text/javascript" src="common.js" ></script>
  
-   <div id='mainChoice'>
-    <input type="button" class="centerLeft button" value="cab service admin" onclick="admin()"><br/>
-    <input type="button" class="centerRight  button" value="customer" onclick="customer()"><br/>
+   <div id='mainChoice' class="wrapper">
+    <input type="button" class=" button" value="Admin" onclick="admin()">
+    <input type="button" class="  button" value="Customer" onclick="customer()">
    </div>
 
     <div id="adminDiv" style="display:none;" >
-        <br/><br/>
-        <input type="button" class="buttonAdmin" value="addingcar" onclick="addingCarAdmin()">
-        <input type="button" class="buttonAdmin" value="viewing car" onclick="viewingCarAdmin()">
-        <input type="button" class="buttonAdmin" value="viewing user" onclick="viewingUserAdmin()">
-        <input type="button" class="buttonAdmin" value="viewing trip" onclick="viewingTripAdmin()">
-        <input type="button" class="buttonAdmin" value="change details" onclick=" changingDetailsAdmin()">
-        <input type="button" class="buttonAdmin" value="view all car" onclick="viewAllCarAdmin()">
-        <input type="button" class="buttonSubmit" value="close" onclick="admin()"><br/>
-        <br/>
+        
+        <input type="button"  class="buttonAdmin" value="Addingcar" id="addCar"  onclick="hideAndView('addingCarDiv');hideAndView('viewCar');hideAndView('viewAllCar');hideAndView('viewUser');hideAndView('viewTrip');
+        hideAndView('changeDetails');hideAndView('addLocation'),hideAndView('close1')">
+        <input type="button" class="buttonAdmin" value="Viewing car" id="viewCar" onclick="hideAndView('viewingCarDiv');hideAndView('addCar');hideAndView('viewAllCar');hideAndView('viewUser');hideAndView('viewTrip');
+        hideAndView('changeDetails');hideAndView('addLocation'),hideAndView('close1')">
+        <input type="button" class="buttonAdmin" value="View all car" id="viewAllCar" onclick="hideAndView('viewingAllCar');hideAndView('addCar');hideAndView('viewCar');hideAndView('viewUser');hideAndView('viewTrip');
+        hideAndView('changeDetails');hideAndView('addLocation'),hideAndView('close1')">
+        <input type="button" class="buttonAdmin" value="Viewing user" id="viewUser" onclick="hideAndView('viewingUserDiv');hideAndView('addCar');hideAndView('viewCar');hideAndView('viewAllCar');hideAndView('viewTrip');
+        hideAndView('changeDetails');hideAndView('addLocation'),hideAndView('close1')">
+        <input type="button" class="buttonAdmin" value="Viewing trip" id="viewTrip" onclick="hideAndView('viewingTripDiv');hideAndView('addCar');hideAndView('viewCar');hideAndView('viewAllCar');hideAndView('viewUser');
+        hideAndView('changeDetails');hideAndView('addLocation'),hideAndView('close1')">
+        <input type="button" class="buttonAdmin" value="Change details" id="changeDetails" onclick=" hideAndView('changingDetailsDiv');hideAndView('addCar');hideAndView('viewCar');hideAndView('viewAllCar');hideAndView('viewUser');
+        hideAndView('viewTrip');hideAndView('addLocation'),hideAndView('close1')">
+        <input type="button" class="buttonAdmin" value="Adding location" id="addLocation" onclick="hideAndView('locationAddDiv');hideAndView('addCar');hideAndView('viewCar');hideAndView('viewAllCar');hideAndView('viewUser');
+        hideAndView('viewTrip');hideAndView('changeDetails'),hideAndView('close1')">
+        <input type="button" class="buttonSubmit" value="Close" id="close1" onclick="admin()">
     </div>
   
 
 
    <div id="addingCarDiv" style="display:none;">
-    <forms id="carAddingText" autocomplete="off"><br/>
     <input type="text" class="clear txtbox" id="numberOfCar" placeholder="enter car number " /><br/>
     <input type="text" class="clear txtbox" id="nameOfDriver" placeholder="enter driver name"/><br/>
     <input type="text" class="clear txtbox" id="locationOfCar" placeholder="enter location" /><br/>
     <input type="text" class="clear txtbox" id="typeOfCar" placeholder="enter type" /><br/>
     <input type="text" class="clear txtbox" id="costBasedOnType" placeholder="enter cost "/><br/>
-    <input type="button" class="buttonAdmin" value="ok" onclick="addingCar()">
     <p id="addedCarContent" class="clearPara"></p>
-    <input type="submit" class="buttonSubmit" value="close" id= "clearAddedCar" onclick="addingCarAdmin();clearInput();clearParagraph()"><br/>
-    <br/></forms>
+    <input type="button" class="buttonAdmin" value="ok" onclick="addingCar();">
+    
+    <input type="submit" class="buttonSubmit" value="close" id= "clearAddedCar" onclick="hideAndView('addingCarDiv');clearInput();clearParagraph();hideAndView('viewCar');hideAndView('viewAllCar');hideAndView('viewUser');hideAndView('viewTrip');
+    hideAndView('changeDetails');hideAndView('addLocation');hideAndView('close1');view('numberOfCar');view('nameOfDriver');view('locationOfCar');view('typeOfCar');view('costBasedOnType')">
+    
    </div>
 
-   <div id="viewingCarDiv" style="display:none;">
-    <br/>
-    <input type="text" class="clear txtbox" id="enteredNumber" placeholder="enter car number"><br/>
-    <p id="viewingCarContent" class="clearPara"></p>
-    <input type="button" class="buttonAdmin" value="ok" onclick="viewingCarDetails()">
-    <input type="submit" class="buttonSubmit" value="cancel" onclick="viewingCarAdmin();clearInput();clearParagraph()"><br/>
-    <br/>
+   <div id="viewingCarDiv" style="display:none;" >
+    <input type="button" id='select' value="Select here" onclick="viewingCarDetailsOptions('slct')">
+    <select id="slct">
+        <option ></option>
+     </select>
+    
+     <p id="viewingCarContent" class="clearPara"></p>
+    <input type="button" class="buttonAdmin" value="ok" onclick="viewingCarDetails();">
+    <input type="submit" class="buttonSubmit" value="Cancel" onclick="view('select');view('slct');hideAndView('viewingCarDiv');clearInput();clearParagraph();hideAndView('addCar');hideAndView('viewAllCar');hideAndView('viewUser');hideAndView('viewTrip');
+    hideAndView('changeDetails');hideAndView('addLocation'),hideAndView('close1')">
+    
    </div> 
    <div id="viewingAllCar" style="display: none;">
        <p id="viewAllCarContent" class="clearPara"></p>
-       <input type="button" class="buttonAdmin" value="click to view" onclick="viewCars()">
-       <input type="submit" class="buttonSubmit" value="cancel" onclick="viewAllCarAdmin();clearParagraph()"><br/>
-       <br/>
+       <input type="button" class="buttonAdmin" value="Click to view" onclick="viewCars()">
+       <input type="submit" class="buttonSubmit" value="Cancel" onclick="hideAndView('viewingAllCar');clearParagraph();hideAndView('addCar');hideAndView('viewCar');hideAndView('viewUser');hideAndView('viewTrip');
+       hideAndView('changeDetails');hideAndView('addLocation'),hideAndView('close1')">
+       
    </div>
 
    <div id="viewingUserDiv" style="display:none;">
     
     <p id="userContent" class="clearPara"></p>
-    <input type="button" class="buttonAdmin" value="click to view" onclick="viewingUserDetails()">
-    <input type="submit" class="buttonSubmit" value="cancel" onclick="viewingUserAdmin();clearParagraph()"><br/>
-    <br/>
+    <input type="button" class="buttonAdmin" value="Click to view" onclick="viewingUserDetails()">
+    <input type="submit" class="buttonSubmit" value="Cancel" onclick="hideAndView('viewingUserDiv');clearParagraph();hideAndView('addCar');hideAndView('viewCar');hideAndView('viewAllCar');hideAndView('viewTrip');
+    hideAndView('changeDetails');hideAndView('addLocation'),hideAndView('close1')">
+    
    </div>
 
    <div id="viewingTripDiv" style="display:none;">
-    <br/>
-    <input type="text" id="carNumberToBeChecked" class="clear txtbox" placeholder="car number"><br/>
-    <p id="viewingTripContent" class="clearPara"></p>
-    <input type="button" class="buttonAdmin" value="click to view trip details" onclick="viewingTripDetails()">
-    <input type="submit" class="buttonSubmit" value="cancel" onclick=" viewingTripAdmin();clearInput();clearParagraph()"><br/>
-    <br/>
+    <input type="button" id="carDetailsId" value="Select here" onclick="viewingCarDetailsOptions('slctTrip')">
+    <select id="slctTrip">
+        <option ></option>
+     </select>
+    <p id="viewingTripContent" class="clearPara" ></p>
+    <input type="button" class="buttonAdmin" value="Click to view trip" onclick="viewingTripDetails();">
+    <input type="submit" class="buttonSubmit" value="Cancel" onclick=" hideAndView('viewingTripDiv');clearInput();clearParagraph();hideAndView('addCar');hideAndView('viewCar');hideAndView('viewAllCar');hideAndView('viewUser');
+    hideAndView('changeDetails');hideAndView('addLocation'),hideAndView('close1');view('carDetailsId');view('slctTrip')">
+    
+   </div>
+   <div id="locationAddDiv" style="display:none;">
+      
+       <input type="text" id="startLoc" class="clear txtbox" placeholder="Starting location"><br/>
+       <input type="text" id="endLoc" class="clear txtbox" placeholder="Endinging location"><br/>
+       <input type="number" id="amount" class="clear txtbox" placeholder="cost"><br/>
+       <p id='costLocationAddContent' class="clearPara"></p>
+       <input type="button" class="buttonAdmin" value="Click to Add" onclick="addingCostLocation();">
+       <input type="submit" class="buttonSubmit" value="Cancel" onclick="hideAndView('locationAddDiv');clearInput();clearParagraph();hideAndView('addCar');hideAndView('viewCar');hideAndView('viewAllCar');hideAndView('viewUser');
+       hideAndView('viewTrip');hideAndView('changeDetails'),hideAndView('close1');view('startLoc');view('endLoc');view('amount')">
    </div>
 
    <div id="changingDetailsDiv" style="display:none;">
-    <br/>
-    <input type="text" id="carNumberForChangingDetails" class="clear txtbox" placeholder="enter car number"> <br/>
-    <input type="button" class="buttonAdmin" value="driver changing" onclick="driverChangeAdmin()"><br/>
-    <input type="button" class="buttonAdmin" value="cost change" onclick="costChangeAdmin()"><br/>
-    <input type="button" class="buttonAdmin" value="click to change details" onclick="changeDetails()">
-    <input type="submit" class="buttonSubmit" value="cancel" onclick="changingDetailsAdmin();clearInput()"><br/>
-    <br/>
+    <input type="button" id="changeDetailsId" value="Select here" onclick="viewingCarDetailsOptions('changeDetail')">
+    <select id="changeDetail">
+        <option ></option>
+     </select><br/>
+    <!-- <input type="text" id="carNumberForChangingDetails" class="clear txtbox" placeholder="enter car number"> <br/> -->
+    <input type="button" class="buttonAdmin" value="Driver changing" id="driverChange" onclick="hideAndView('driverChangeDiv');hide('costChange');hide('cancel2')"><br/>
+    <input type="button" class="buttonAdmin" value="Cost change" id="costChange" onclick="hideAndView('costChangeDiv');hide('driverChange');hide('cancel2')"><br/>
+
+    <input type="submit" class="buttonSubmit" value="Cancel" id="cancel2" onclick=" hideAndView('changingDetailsDiv');clearInput();hideAndView('addCar');hideAndView('viewCar');hideAndView('viewAllCar');hideAndView('viewUser');
+    hideAndView('viewTrip');hideAndView('addLocation'),hideAndView('close1');">
+   
    </div>
 
    <div id="driverChangeDiv" style="display: none;">
-    <br/>
+    
     <input type="text" id="newDriver" class="clear txtbox" placeholder="New driver name"><br/>
     <p id="driverChanged" class="clearPara"></p>
-    <input type="button" class="buttonAdmin" value="click to change detail" onclick="driverChange()">
-    <input type="submit" class="buttonSubmit" value="cancel" onclick="driverChangeAdmin();clearInput();clearParagraph()" ><br/>
-    <br/>
+    <input type="button" class="buttonAdmin" value="Click to change" onclick="driverChange();">
+    <input type="submit" class="buttonSubmit" value="Cancel" onclick="inputClear('newDriver');hideAndView('driverChangeDiv');clearParagraph();view('costChange');view('cancel2');view('newDriver')" ><br/>   
     </div>
 
     <div id="costChangeDiv" style="display: none;">
-        <br/>
+        
         <input type="text" id="newCost" class="clear txtbox" placeholder="new cost"><br/>
         <p id="costChanged" class="clearPara"></p>
-        <input type="button" class="buttonAdmin" value="click to change cost" onclick="costChange()">
-        <input type="submit" class="buttonSubmit" value="cancel"  onclick="costChangeAdmin();clearInput();clearParagraph()" ><br/>
-        <br/>
+        <input type="button" class="buttonAdmin" value="Click to change" onclick="costChange();">
+        <input type="submit" class="buttonSubmit" value="Cancel"  onclick="inputClear('newCost');hideAndView('costChangeDiv');clearParagraph();view('driverChange');view('cancel2');view('newCost')" ><br/>
+        
     </div>
 
     <div id="customerDiv" style="display:none;" >
-        <br/><br/>
-        <input type='button' class="buttonCustomer" value='signUp' onclick="signup()">
-        <input type='button' class="buttonCustomer" value='LogIn' onclick="login()">
-        <input type="button" class="buttonSubmit" value="close customer page" onclick="customer()"><br/>
+        
+        <input type='button' class="buttonCustomer" value='SignUp'id="signupId" onclick="hideAndView('signUpDiv');hideAndView('loginId');hideAndView('close3')"><br/>
+        <input type='button' class="buttonCustomer" value='LogIn' id="loginId" onclick="hideAndView('logInDiv');hideAndView('signupId');hideAndView('close3');"><br/>
+        <input type="button" class="buttonSubmit" value="close customer page" id="close3" onclick="customer()">
         <br/>
        </div>
 
     <div id="signUpDiv" style="display:none;">
-        <br/>
+        
         <input  type="email" class="clear txtbox" id="mailId" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" placeholder="Enter mail "> <br/>
         <input type="password" class="clear txtbox" id="password" placeholder="Enter password " >
-        <img src="D:\javaScript\eyeIcon.png" width="15" height="12" onmouseover="mouseoverPass('password');" onmouseout="mouseoutPass('password');" /><br/>
+        <img src="D:\javaScript\eyeIcon.png" id="img" width="15" height="12" onmouseover="mouseoverPass('password');" onmouseout="mouseoutPass('password');" /><br/>
         <input type="password" class="clear txtbox" id="passwordConfirmation" placeholder="Re-enter password " ><br/>
         <input type="text" class="clear txtbox" id="mobileNumber" placeholder="Enter mobile number"> <br/>
         <p id="addedCustomerContent" class="clearPara"></p>
-        <input type="button" class="buttonCustomer" value="sign up" onclick="addingCustomer()"> 
-        <input type="submit" class="buttonSubmit" value="cancel" onclick="signup();clearInput();clearParagraph()"><br/>
+        <input type="button" class="buttonCustomer" value="sign up" onclick="addingCustomer();"> 
+        <input type="submit" class="buttonSubmit" value="cancel" onclick="hideAndView('signUpDiv');clearInput();clearParagraph();hideAndView('loginId');hideAndView('close3');view('mailId');view('password');view('img');view('passwordConfirmation');view('mobileNumber')"><br/>
         <br/>
     </div>
     <div id="logInDiv" style="display:none;">
-        <br/>
+        
         <input  type="email" class="clear txtbox" id="mailIdEntered" placeholder="Enter mail"> <br/>
         <input type="password" class="clear txtbox" id="passwordEntered" placeholder="Enter password">
-        <img src="D:\javaScript\eyeIcon.png" width="15" height="12" onmouseover="mouseoverPass('passwordEntered');" onmouseout="mouseoutPass('passwordEntered');" /> <br/>
+        <img src="D:\javaScript\eyeIcon.png" id="eye" width="15" height="12" onmouseover="mouseoverPass('passwordEntered');" onmouseout="mouseoutPass('passwordEntered');" /> <br/>
         <p id="LoggingIn" class="clearPara"></p>
-        <input type="button" class="buttonCustomer" value="log in" onclick="logIn()">
-        <input type="submit" class="buttonSubmit" value="cancel" onclick="login();clearInput();clearParagraph()"><br/><br/>
+        <input type="button" class="buttonCustomer" id='log' value="log in" onclick="logIn();">
+        <input type="submit" class="buttonSubmit" id='sub' value="cancel" onclick="hideAndView('signupId');clearInput();clearParagraph();hideAndView('logInDiv');hideAndView('close3')"><br/><br/>
     </div>
 
     <div id="afterLogInDiv" style="display:none;">
-        <br/>
-        <input type="button" class="buttonCustomer" value="booking" onclick=" bookingCustomer()">
-        <input type="button"class="buttonCustomer"  value="history" onclick="historyCustomer()"> 
-        <input type="submit" class="buttonSubmit" value="cancel" onclick="logIn()"><br/>
+        
+        <input type="button" class="buttonCustomer" id="book" value="booking" onclick="hide('logInDiv');hideAndView('logInBookingDiv');hideAndView('historyId')">
+        <input type="button"class="buttonCustomer"  value="history" id="historyId" onclick="hide('logInDiv');hideAndView('logInHistoryDiv');hideAndView('book');"> 
+        <!-- <input type="submit" class="buttonSubmit" id="cancel3" value="cancel" onclick="clearInput();view('customerDiv')"><br/> -->
+        <input type="button" value="cancel" id='cancel4' class="buttonSubmit" onclick="view('logInDiv');hideAndView('afterLogInDiv');clearInput();clearParagraph()" >
     </div>
 
     <div id="logInBookingDiv" style="display:none;">
-        <br/>
+        
         <input type="text" class="clear txtbox" id="startDestinationEntered" placeholder="start destination"><br/>
         <input type="text" class="clear txtbox" id="endDestinationEntered" placeholder="end destination"><br/>
+        <input type="text" class="clear txtbox" id="typeOfCarEntered" placeholder="car type"><br/>
         <p id="bookingContent" class="clearPara"></p>
-        <input type="button" class="buttonCustomer" value="ok" onclick="booking()">
-        <input type="submit" class="buttonSubmit" value="cancel" onclick="bookingCustomer()"><br/>
+        <input type="button" class="buttonCustomer" value="ok" onclick="booking();">
+        <input type="submit" class="buttonSubmit" value="cancel" onclick="paraClear('bookingContent');inputClear('startDestinationEntered');inputClear('endDestinationEntered');inputClear('typeOfCarEntered');hideAndView('logInBookingDiv');view('historyId');view('cancel4');view('startDestinationEntered');view('endDestinationEntered');view('typeOfCarEntered')">
 
     </div>
 
     <div id="logInHistoryDiv" style="display:none;">
         <p id="historyContent" class="clearPara"></p>
-        <input type="button" class="buttonCustomer" value="click to view history" onclick="customerTravelHistory()">
-        <input type="submit" class="buttonSubmit" value="cancel" onclick="historyCustomer()"><br/>
+        <input type="button" class="buttonCustomer" id="allDay" value="click to view" onclick="customerTravelHistory();hide('specDay')">
+        <input type="button" class="buttonCustomer" id="specDay" value="Day wise History" onclick="hideAndView('dayWiseHistoryDiv');hide('allDay')">
+        <input type="submit" class="buttonSubmit" value="cancel" onclick="paraClear('historyContent');hideAndView('logInHistoryDiv');view('book');view('cancel4');view('specDay');view('allDay')"><br/>
+    </div>
+    <div id="dayWiseHistoryDiv" style="display:none;">
+        <input type="date" id="dateEnteredId" placeholder="date" class="clear txtbox">
+        <p id="dayWiseContent"></p>
+        <input type="button" value="click to view" class="buttonCustomer" onclick="dateWiseHistory();">
+        <input type="submit" value="cancel" class="buttonSubmit" onclick="paraClear('dayWiseContent');hideAndView('dayWiseHistoryDiv');view('logInHistoryDiv');view('dateEnteredId')">
+        
     </div>
     </body>
 </html>

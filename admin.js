@@ -1,4 +1,4 @@
-document.write('<script src="choice.js" type="text/javascript"></script>');
+document.write('<script src="common.js" type="text/javascript"></script>');
 document.write('<script src="customer.js" type="text/javascript"></script>');
 class DetailsOfCab{
     constructor(carNumber,driverName,location,type,cost)
@@ -48,11 +48,11 @@ function addingCar(){
 
     if (carNumber == '' || driverName == '' || location == '' || type == '' || cost =='')
     {
-        document.getElementById('addedCarContent').innerHTML = 'please fill the columns' + "<br/>"
+        document.getElementById('addedCarContent').innerHTML = 'please fill the columns '
     }
     else{
         if (carNumber in carDetails) {
-            document.getElementById('addedCarContent').innerHTML = 'car number already present' + '<br/>'
+            document.getElementById('addedCarContent').innerHTML = 'car number already present' 
         }
         else{
             var addCarCheck = true;
@@ -62,7 +62,7 @@ function addingCar(){
             {
                 if (driverName == carDetails[cars[i]].driverName)
                 {
-                    document.getElementById('addedCarContent').innerHTML = 'driver already aloted for car : ' + carDetails[cars[i]].carNumber + "<br/>"
+                    document.getElementById('addedCarContent').innerHTML = 'driver already aloted for car : ' + carDetails[cars[i]].carNumber 
                     addCarCheck = false;
                 }
             }
@@ -82,33 +82,63 @@ function addingCar(){
                 car.push(carNumber);
                 availabilityOfCar[location] = car;
              }
-             document.getElementById('addedCarContent').innerHTML = 'added successfully' + "<br/>"
-        }
-        
+             hide('numberOfCar');hide('nameOfDriver');hide('locationOfCar');hide('typeOfCar');hide('costBasedOnType')
+             document.getElementById('addedCarContent').innerHTML = 'added successfully'         }
+            
     
        }
    }
-        
-    
   
 }
+function addingCostLocation(){
+    var startLocation = document.getElementById('startLoc').value.toLocaleUpperCase();
+    var endLocation = document.getElementById('endLoc').value.toLocaleUpperCase();
+    var amount = document.getElementById('amount').value;
+    var locEntered = startLocation+'-'+endLocation;
+    if (startLocation == '' || endLocation == '' || amount == '')
+    {
+       document.getElementById('costLocationAddContent').innerHTML = 'kindly enter all details' 
+    }
+    else {
+        hide('startLoc');hide('endLoc');hide('amount')
+       if (locEntered in costPerLocation)
+       {
+          costPerLocation[locEntered] = amount;
+           document.getElementById('costLocationAddContent').innerHTML = 'location already present' + "<br/>" + "cost updated" 
+       }
+       else{
+           costPerLocation[locEntered] = amount;
+           document.getElementById('costLocationAddContent').innerHTML = 'added successfully' 
+       }
+    }
+   
+}        
+
+
 function viewingCarDetails()
 {
-    var number = document.getElementById("enteredNumber").value.toLocaleLowerCase();
+    var numberEntered = document.getElementById("slct");
+    var number = numberEntered.options[numberEntered.selectedIndex].text;
+
     if (number == '')
     {
-        document.getElementById("viewingCarContent").innerHTML = 'please enter car number' + '<br/>'
+        document.getElementById("viewingCarContent").innerHTML = 'please enter car number' 
     }
     else{
         if (number in carDetails)
         {
-            document.getElementById("viewingCarContent").innerHTML = "car number : " + carDetails[number].carNumber+"<br/>"+ 
-        "Driver name : " + carDetails[number].driverName + "<br/>" +
-        "location : " + carDetails[number].location+"<br/>"+
-        "cost : " + carDetails[number].cost + "<br/>";
+            hide('select');hide('slct')
+            document.getElementById("viewingCarContent").innerHTML = "***********************************************"
+                                                                     + "<br/>" + "car number" +"&nbsp &nbsp &nbsp driver name"+ "&nbsp &nbsp &nbsp location" + 
+                                                                     "&nbsp &nbsp &nbsp cost" + "<br/>"+ "***********************************************" 
+                                                                       +"<br/>" +carDetails[number].carNumber+"&nbsp &nbsp &nbsp"+ 
+                                                                       carDetails[number].driverName + "&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp" +
+                                                                       carDetails[number].location+"&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp"+
+                                                                      carDetails[number].cost + "<br/>"+
+                                                                      "***********************************************"
         }
         else{
-            document.getElementById("viewingCarContent").innerHTML = 'car not available'+"<br/>"
+            document.getElementById("viewingCarContent").innerHTML = 'car not available'
         }
         
     }
@@ -121,29 +151,56 @@ function viewCars(){
     console.log(allCars)
     if (allCars.length>0)
     {
+        document.getElementById('viewAllCarContent').innerHTML = ''
+        document.getElementById('viewAllCarContent').innerHTML += "***********************************************"
+                                                                + "<br/>" +"s.no" + "&nbsp &nbsp car number" +"&nbsp &nbsp &nbsp driver name"
+                                                                + "&nbsp &nbsp &nbsp location" + 
+                                                                "&nbsp &nbsp &nbsp cost" + "<br/>"
+                                                                + "***********************************************" +"<br/>" 
         for(let i =0;i<allCars.length;i++)
         {
-            document.getElementById('viewAllCarContent').innerHTML += "car number : " + carDetails[allCars[i]].carNumber + "<br/>"
-            + "driver name : "+ carDetails[allCars[i]].driverName + "<br/>" +
-            "location : " + carDetails[allCars[i]].location + "<br/>" +
-            "cost : " + carDetails[allCars[i]].cost + "<br/>" + "*************" + '<br/>'
+            let j = i+1
+            document.getElementById('viewAllCarContent').innerHTML += j +"&nbsp &nbsp &nbsp &nbsp" +carDetails[allCars[i]].carNumber + "&nbsp &nbsp &nbsp"
+                                                                     + carDetails[allCars[i]].driverName + "&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp" 
+                                                                    + carDetails[allCars[i]].location + "&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp" +
+                                                                   + carDetails[allCars[i]].cost +  '<br/>'
         }
+        document.getElementById('viewAllCarContent').innerHTML+="***********************************************"
     }
     else{
+        document.getElementById('viewAllCarContent').innerHTML = ''
         document.getElementById('viewAllCarContent').innerHTML = "no cars available"
     }
 }
+function viewingCarDetailsOptions(selectedIds){
+    var carAvailable = Object.keys(carDetails);
+    
+    var option = ''
+        for (let i = 0; i<carAvailable.length;i++)
+        {
+            option += '<option value="'+ carAvailable[i] + '">'+carAvailable[i]+"</option>"
+        }
+           document.getElementById(selectedIds).innerHTML = option;
+}
+
 function viewingUserDetails()
 {
     var users = Object.keys(userDetail);
     if (users.length>0)
     {
+        document.getElementById('userContent').innerHTML = ''
+        document.getElementById('userContent').innerHTML += "***********************************"+"<br/>"+ "s.no" + "&nbsp &nbsp &nbsp"+
+                                                            "name" + "&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp mobile number"+"&nbsp &nbsp &nbspcount"
+                                                           + "<br/>" + "***********************************"+"<br/>"
         for(let i=0;i<users.length;i++)
         {
-           document.getElementById("userContent").innerHTML += "name : "+userDetail[users[i]].name +"<br/>"+ "mobile number : "+ userDetail[users[i]].mobileNumber+" <br/>"
-            +"count : "+ userDetail[users[i]].count+"<br/>"
-            +"*****************************************" + "<br/>"
+            let j = i+1
+           document.getElementById("userContent").innerHTML += j + "&nbsp &nbsp &nbsp" +
+                                                                userDetail[users[i]].name + "&nbsp &nbsp &nbsp"+ userDetail[users[i]].mobileNumber+"&nbsp &nbsp &nbsp"
+                                                               + userDetail[users[i]].count+"<br/>"
+                                                               
         }
+        document.getElementById("userContent").innerHTML += "***********************************"
     }
     else{
         document.getElementById("userContent").innerHTML = "No users available";
@@ -151,37 +208,49 @@ function viewingUserDetails()
 }
 //date,time,mail,location,price,car,driverName
 function viewingTripDetails(){
-    var carNumberTripToBeViewed = document.getElementById("carNumberToBeChecked").value.toLocaleLowerCase();
+   
+    var carNumberTripToBeViewedEnterd = document.getElementById("slctTrip");
+    var carNumberTripToBeViewed = carNumberTripToBeViewedEnterd.options[carNumberTripToBeViewedEnterd.selectedIndex].text;
     if (carNumberTripToBeViewed == '')
     {
-        document.getElementById("viewingTripContent").innerHTML  = 'kindly enter car number' + '<br/>'
+        document.getElementById("viewingTripContent").innerHTML  = 'kindly enter car number' 
     }
     else
     {
+        hide('carDetailsId');hide('slctTrip')
         var tripListToView = Object.keys(tripDetails);
         if (carNumberTripToBeViewed in carDetails){
             if (tripListToView.length>0){
-       
+                
+                document.getElementById("viewingTripContent").innerHTML = ''
+                document.getElementById("viewingTripContent").innerHTML += "***************************************************************************"+"<br/>"
+                                                                           +"s.no" +"&nbsp &nbsp &nbsp car number"+ "&nbsp &nbsp &nbsp mail id"+
+                                                                           "&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp location"+
+                                                                           "&nbsp &nbsp &nbsp driver name"+"&nbsp &nbsp &nbsp price"+ "&nbsp &nbsp &nbsp date"
+                                                                           +"&nbsp &nbsp &nbsp time"+"<br/>" + "***************************************************************************"
+                                                                           + "<br/>"
                 for(let i =0;i< tripListToView.length;i++)
                 {
-                    
+                    let j = i+1
                     if(tripDetails[tripListToView[i]].car == carNumberTripToBeViewed){
-                        document.getElementById("viewingTripContent").innerHTML = "car number : "+tripDetails[tripListToView[i]].car+"<br/> "
-                                                                 +"Mail id : "+tripDetails[tripListToView[i]].mail
-                                                                 +" <br/> location : "+ tripDetails[tripListToView[i]].location
-                                                                 +"<br/> driver name : "+ tripDetails[tripListToView[i]].driverName
-                                                                 +"<br/> price : "+tripDetails[tripListToView[i]].price
-                                                                 +"<br/> date : "+tripDetails[tripListToView[i]].date
-                                                                 +"<br/> time : "+tripDetails[tripListToView[i]].time+" <br/>"
+                        document.getElementById("viewingTripContent").innerHTML += j +"&nbsp &nbsp &nbsp"+tripDetails[tripListToView[i]].car
+                                                                 +"&nbsp &nbsp &nbsp"+tripDetails[tripListToView[i]].mail
+                                                                 +"&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp"+ tripDetails[tripListToView[i]].location
+                                                                 +"&nbsp &nbsp &nbsp"+ tripDetails[tripListToView[i]].driverName
+                                                                 +"&nbsp &nbsp &nbsp"+tripDetails[tripListToView[i]].price
+                                                                 +"&nbsp &nbsp &nbsp"+tripDetails[tripListToView[i]].date
+                                                                 +"&nbsp &nbsp &nbsp"+tripDetails[tripListToView[i]].time + "<br/>"
                      }
+                     document.getElementById("viewingTripContent").innerHTML += "***************************************************************************"
                 }
              }
              else{
-                   document.getElementById("viewingTripContent").innerHTML = "no trips" + "<br/>"
+                document.getElementById("viewingTripContent").innerHTML = ''
+                   document.getElementById("viewingTripContent").innerHTML = "no trips" 
                  }
         }
         else{
-            document.getElementById("viewingTripContent").innerHTML = 'car not available'+'<br/>'
+            document.getElementById("viewingTripContent").innerHTML = 'car not available'
         }
                 
     }
@@ -189,11 +258,12 @@ function viewingTripDetails(){
 }
 function driverChange()
 {
-    var carNumberTOChange = document.getElementById("carNumberForChangingDetails").value.toLocaleLowerCase();
+    var carNumberTOChangeEntered  = document.getElementById("changeDetail");
+    var carNumberTOChange = carNumberTOChangeEntered.options[carNumberTOChangeEntered.selectedIndex].text;
     var newDriverName = document.getElementById('newDriver').value.toLocaleLowerCase();
     if (carNumberTOChange == '' || newDriverName == '')
     {
-        document.getElementById("driverChanged").innerHTML = 'please fill the column'+'<br/>'
+        document.getElementById("driverChanged").innerHTML = 'please fill the column'
     }
     else{
         if (carNumberTOChange in carDetails)
@@ -205,7 +275,7 @@ function driverChange()
                 {
                     if (newDriverName == carDetails[cars[i]].driverName)
                     {
-                        document.getElementById('driverChanged').innerHTML = 'driver already aloted for car : ' + carDetails[cars[i]].carNumber + "<br/>"
+                        document.getElementById('driverChanged').innerHTML = 'driver already aloted for car : ' + carDetails[cars[i]].carNumber 
                         driverChangeCheck = false;
                     }
                 }
@@ -213,126 +283,39 @@ function driverChange()
             }
             if (driverChangeCheck)
             {
+                hide('newDriver')
                 carDetails[carNumberTOChange].driverName = newDriverName;
-                document.getElementById("driverChanged").innerHTML = "new driver name updated " + '<br/>'
+                document.getElementById("driverChanged").innerHTML = "new driver name updated " 
                 }
             
             
         }
         else{
-            document.getElementById("driverChanged").innerHTML = 'car number entered is not available' + '<br/>'
+            document.getElementById("driverChanged").innerHTML = 'car number entered is not available'
         }
     }
     
 }
 function costChange()
 {
-    var carNumberTOChange = document.getElementById("carNumberForChangingDetails").value.toLocaleLowerCase();
+    var enteredCarNumberTOChange = document.getElementById("changeDetail");
+    var carNumberTOChange = enteredCarNumberTOChange.options[enteredCarNumberTOChange.selectedIndex].text;
     var newCost = document.getElementById('newCost').value;
     if (carNumberTOChange == '' || newCost == '')
     {
-        document.getElementById('costChanged').innerHTML = 'kindly enter all details' + '<br/>'
+        document.getElementById('costChanged').innerHTML = 'kindly enter all details' 
     }
     else{
         if (carNumberTOChange in carDetails)
         {
+            hide('newCost')
             carDetails[carNumberTOChange].cost = newCost;
-            document.getElementById('costChanged').innerHTML = "cost updated" + '<br/>'
+            document.getElementById('costChanged').innerHTML = "cost updated" 
         }
         else{
-            document.getElementById('costChanged').innerHTML = 'car number not present in the list' + '<br/>'
+            document.getElementById('costChanged').innerHTML = 'car number not present in the list' 
         }
     }
     
 }
-
-function driverChangeAdmin()
-{
-    var driverChangeDivision = document.getElementById("driverChangeDiv");
-        if (driverChangeDivision.style.display === "none") {
-            driverChangeDivision.style.display = "block";
-        } else {
-            driverChangeDivision.style.display = "none";
-         }
-}
-function costChangeAdmin()
-{
-    var costChangeDivision = document.getElementById("costChangeDiv");
-        if (costChangeDivision.style.display === "none") {
-            costChangeDivision.style.display = "block";
-        } else {
-            costChangeDivision.style.display = "none";
-         }
-}
-
-function addingCarAdmin()
-{
-    var addingCarDivision = document.getElementById("addingCarDiv");
-    if (addingCarDivision.style.display === "none") {
-            addingCarDivision.style.display = "block";
-    } else {
-            addingCarDivision.style.display = "none";
-    }
-    
-}
-function viewingCarAdmin()
-{
-    var viewingCarDivision = document.getElementById("viewingCarDiv");
-    if (viewingCarDivision.style.display === "none") {
-        viewingCarDivision.style.display = "block";
-    } else {
-        viewingCarDivision.style.display = "none";
-} 
-}
-function viewingUserAdmin()
-{
-    var viewingUserDivision = document.getElementById("viewingUserDiv");
-    if (viewingUserDivision.style.display === "none") {
-        viewingUserDivision.style.display = "block";
-    } else {
-        viewingUserDivision.style.display = "none";
-     }
-}
-
-function viewingTripAdmin()
-{
-    var viewingTripDivision = document.getElementById("viewingTripDiv");
-        if (viewingTripDivision.style.display === "none") {
-            viewingTripDivision.style.display = "block";
-        } else {
-            viewingTripDivision.style.display = "none";
-         }
-}
-function changingDetailsAdmin()
-{
-    var changingDetailsDivision = document.getElementById("changingDetailsDiv");
-    if (changingDetailsDivision.style.display === "none") {
-        changingDetailsDivision.style.display = "block";
-    } else {
-        changingDetailsDivision.style.display = "none";
-     }
-}
-
-function viewAllCarAdmin()
-{
-    var viewingAllCarDivision = document.getElementById("viewingAllCar");
-    if (viewingAllCarDivision.style.display === "none") {
-        viewingAllCarDivision.style.display = "block";
-    } else {
-        viewingAllCarDivision.style.display = "none";
-     } 
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
 
